@@ -62,20 +62,27 @@ bodyClass: home
     </header>
     <p class="lede reveal">The renewal of Western Civilization requires serious reflection on the principles that give public life its moral purpose. Its inheritance includes: the Greek inquiry into reason and virtue, the Roman contribution to law, and the Christian understanding of the inherent dignity of each human person. The tradition of natural law offers a basis for judging the exercise of power by standards of justice that government does not create.</p>
 
-    <ul class="inheritance reveal" aria-label="The inheritance of Western Civilization">
-      {% for h in heritage %}
-      <li>
-        <svg viewBox="0 0 64 64" aria-hidden="true">{{ h.icon | safe }}</svg>
-        <h3>{{ h.city }}</h3>
-        <p class="inh-theme">{{ h.theme }}</p>
-        <p class="inh-names">{{ h.names }}</p>
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="triad reveal">
+      <ol class="triad-cols" aria-label="Athens, Rome, and Jerusalem">
+        {% for h in heritage %}
+        <li>
+          <p class="triad-city">{{ h.city }}</p>
+          <p class="triad-lead">{{ h.lead }}</p>
+          <h3>{{ h.word }}</h3>
+          <p class="triad-grounds"><span>At the Summit</span>{{ h.grounds }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+      <div class="triad-join" aria-hidden="true"></div>
+      <div class="triad-law">
+        <h3>Natural Law</h3>
+        <p>The tradition in which the three meet, and the subject of this Summit</p>
+      </div>
+    </div>
 
     <div class="split">
       <div class="split-text reveal">
-        <p>This year in Munich and, more explicitly, in Athens, Secretary of State Marco Rubio drew attention to the West’s shared inheritance. In Athens, he expressly connected it with Christian theology and the natural law tradition. Those remarks underscore the relevance of questions that deserve sustained examination.</p>
+        <p>This year in Munich and, more explicitly, in Athens, Secretary of State Marco Rubio drew attention to the West’s shared inheritance. In Athens, he expressly connected it with Christian theology and the natural law tradition. His remarks returned these questions to public debate.</p>
         <p>The Summit will examine how the inheritance of Natural Law can guide public policy and leadership today. In practical terms; how leaders can translate respect for human dignity and rights that precede the state into just laws, sound institutions, and a lasting peace.</p>
         <p class="plates-label">Building on Two Events</p>
         <p>With this Summit, we are building on two events: the 250th anniversary of the founding of the United States, and the Annual Natural Law Forum in Rome.</p>
@@ -108,7 +115,7 @@ bodyClass: home
       <p class="eyebrow">Purpose and Vision</p>
       <h2>Rights That Precede the State</h2>
     </header>
-    <div class="cols">
+    <div class="stack">
       <p>Building upon the occasion of the National Catholic Prayer Breakfast the Inaugural International Summit for Western Civilization will bring together leaders to learn about and consider restoration of the natural law tradition.</p>
       <p>At the heart of Western Civilization is the foundational conviction: every human person possesses God-given inherent dignity and fundamental rights that government must recognize and protect. These rights precede the state. They are rooted in our common human nature and carry corresponding responsibilities toward one another and the common good.</p>
       <p>Natural law provides a rational basis for explaining these principles and applying them to public policy and the law which governs public life. The natural law tradition can help leaders address the moral questions underlying contemporary disputes over law, freedom, security, and national identity.</p>

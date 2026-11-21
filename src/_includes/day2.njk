@@ -2,6 +2,7 @@
 <div class="day2">
   <p class="speaker-role">Day Two · {{ s.data.day2.dateText }}</p>
   <h3>{{ s.data.day2.title }}</h3>
+  {% if s.data.day2.venue %}<p class="day2-venue">{{ s.data.day2.venue }}</p>{% endif %}
   <p>{{ s.data.day2.description }}</p>
 </div>
 {% endif %}
