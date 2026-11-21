@@ -448,3 +448,6 @@ h1, h2, h3, .hero-sub, .conviction-text, .page-sub, .triad-grounds { text-wrap: 
 .sec-head.mt { margin-top: 5.5rem; }
 :root { --gold-d: #7a5f22; }
 @media (max-width: 980px) { .site-header.scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(10,16,29,.97); } }
+.plates-head { margin: 0 0 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--gold); }
+.occasion .plates-head .plates-label { margin: 0 0 .6rem; }
+.plates-intro { font: 500 1.35rem/1.4 var(--serif); color: var(--navy); margin: 0; text-wrap: balance; }
