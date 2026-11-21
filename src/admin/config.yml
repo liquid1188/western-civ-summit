@@ -21,6 +21,8 @@ collections:
       - { name: subtitle, label: Subtitle, widget: string }
       - { name: dateText, label: Date as shown, widget: string, hint: "April 21, 2027" }
       - { name: dateISO, label: Date, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+      - { name: startISO, label: "Start (e.g. 2027-04-21T14:00:00-04:00)", widget: string }
+      - { name: endISO, label: "End (e.g. 2027-04-21T18:00:00-04:00)", widget: string }
       - { name: timeText, label: Times line, widget: string }
       - { name: location, label: City, widget: string }
       - { name: venue, label: Venue, widget: string, required: false }
@@ -42,6 +44,7 @@ collections:
         fields:
           - { name: name, label: Name, widget: string }
           - { name: url, label: Website, widget: string, required: false }
+          - { name: logo, label: Logo, widget: image, required: false }
       - name: speakers
         label: Keynote speakers
         widget: list
@@ -110,3 +113,5 @@ collections:
           - { name: web3formsKey, label: Web3Forms access key, widget: string }
           - { name: registrationOpen, label: Registration open, widget: boolean }
           - { name: setupMode, label: Hide from search engines, widget: boolean }
+          - { name: origin, label: "Site address without a trailing slash", widget: string }
+          - { name: cloudflareAnalyticsToken, label: Cloudflare Web Analytics token, widget: string, required: false }

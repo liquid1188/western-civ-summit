@@ -8,6 +8,11 @@
   {% if site.setupMode %}<meta name="robots" content="noindex, nofollow">{% endif %}
   <meta property="og:title" content="{{ title or site.name }}">
   <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ site.origin }}{{ '/assets/img/og.jpg' | url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +32,7 @@
       <nav id="nav" class="nav">
         {% set links = [["/", "Home"], ["/program/", "Program"], ["/archive/", "Speeches & Media"], ["/contact/", "Contact"]] %}
         {% for l in links %}<a href="{{ l[0] | url }}"{% if page.url == l[0] %} aria-current="page"{% endif %}>{{ l[1] }}</a>{% endfor %}
-        <a class="btn btn-gold" href="{{ '/register/' | url }}">Register</a>
+        <a class="btn btn-gold" href="{{ '/register/' | url }}">Attend</a>
       </nav>
     </div>
   </header>
@@ -53,9 +58,10 @@
       <p class="footer-tag">Natural law, human dignity, and the renewal of Western Civilization. Washington, D.C.</p>
       <nav class="footer-nav">
         <a href="{{ '/program/' | url }}">{{ site.currentYear }} Program</a>
-        <a href="{{ '/register/' | url }}">Register</a>
+        <a href="{{ '/register/' | url }}">Request to Attend</a>
         <a href="{{ '/archive/' | url }}">Speeches &amp; Media</a>
         <a href="{{ '/contact/' | url }}">Contact</a>
+        <a href="{{ '/privacy/' | url }}">Privacy</a>
       </nav>
     </div>
     <div class="wrap footer-base">
@@ -63,9 +69,10 @@
       <span><button type="button" class="desktop-toggle" id="desktopToggle">View desktop version</button><span class="dt-sep"> · </span><a href="https://lickitysplitweb.com" rel="noopener">Site by Lickity Split Web Design</a></span>
     </div>
     <div class="wrap footer-credits">
-      <p>Images: Raphael, <em>The School of Athens</em>, Vatican. John Trumbull, <em>Declaration of Independence</em>, U.S. Capitol. Giovanni Paolo Panini, <em>Interior of St. Peter’s, Rome</em>, Detroit Institute of Arts. U.S. Capitol west front, Architect of the Capitol. All public domain, via Wikimedia Commons.</p>
+      <p>Images: Raphael, <em>The School of Athens</em>, Vatican. John Trumbull, <em>Declaration of Independence</em>, U.S. Capitol. Giovanni Paolo Panini, <em>Interior of St. Peter’s, Rome</em>, Detroit Institute of Arts. Thomas Cole, <em>The Consummation of Empire</em>, New-York Historical Society. U.S. Capitol west front, Architect of the Capitol. All public domain, via Wikimedia Commons.</p>
     </div>
   </footer>
   <script src="{{ '/assets/js/main.js' | url }}"></script>
+  {% if site.cloudflareAnalyticsToken %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cloudflareAnalyticsToken }}"}'></script>{% endif %}
 </body>
 </html>

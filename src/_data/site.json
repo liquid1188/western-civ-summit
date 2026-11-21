@@ -5,5 +5,7 @@
   "description": "An annual international summit in Washington, D.C. on natural law, human dignity, and the renewal of Western Civilization.",
   "web3formsKey": "YOUR-WEB3FORMS-ACCESS-KEY",
   "registrationOpen": true,
-  "setupMode": true
+  "setupMode": true,
+  "origin": "https://liquid1188.github.io",
+  "cloudflareAnalyticsToken": ""
 }

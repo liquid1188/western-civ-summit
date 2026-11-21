@@ -11,6 +11,7 @@ description: The program for the International Summit for Western Civilization.
     <p class="page-sub">{{ s.data.title }}: {{ s.data.subtitle }}</p>
     <p class="page-meta">{{ s.data.location }} · {{ s.data.venue }} · {{ s.data.context }}</p>
     {% include "cosponsors.njk" %}
+    {% include "calendar.njk" %}
   </div>
 </section>
 {% include "livestream.njk" %}
@@ -20,6 +21,6 @@ description: The program for the International Summit for Western Civilization.
     {% include "program-list.njk" %}
     {% include "day2.njk" %}
     <p class="note">Program and speakers are subject to change.</p>
-    <p class="center"><a class="btn btn-gold" href="{{ '/register/' | url }}">Register to Attend</a></p>
+    <p class="center"><a class="btn btn-gold" href="{{ '/register/' | url }}">Request to Attend</a></p>
   </div>
 </section>

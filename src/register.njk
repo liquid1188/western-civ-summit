@@ -1,13 +1,13 @@
 ---
 layout: base.njk
-title: Register
-description: Register to attend the International Summit for Western Civilization.
+title: Request to Attend
+description: Request a place at the International Summit for Western Civilization.
 ---
 {% set s = collections.summits | current(site.currentYear) %}
 <section class="page-head" style="--img:url('{{ '/assets/img/art/capitol.jpg' | url }}')">
   <div class="wrap">
     <p class="eyebrow light">{{ s.data.dateText }} · {{ s.data.location }}</p>
-    <h1>Register to Attend</h1>
+    <h1>Request to Attend</h1>
     <p class="page-sub">{{ s.data.title }}: {{ s.data.subtitle }}</p>
     {% include "cosponsors.njk" %}
   </div>
@@ -19,7 +19,7 @@ description: Register to attend the International Summit for Western Civilizatio
       <h2>The {{ s.data.edition }} Summit</h2>
       <dl>
         <dt>Date</dt><dd>{{ s.data.dateText }}</dd>
-        {% for item in s.data.program %}{% if item.label == "Registration" %}<dt>Registration</dt><dd>{{ item.time }}</dd>{% endif %}{% endfor %}
+        {% for item in s.data.program %}{% if item.label == "Registration" %}<dt>Check-in</dt><dd>{{ item.time }}</dd>{% endif %}{% endfor %}
         <dt>Summit</dt><dd>2:00–5:00 p.m.</dd>
         {% for item in s.data.program %}{% if item.label == "Reception" %}<dt>Reception</dt><dd>{{ item.time }}</dd>{% endif %}{% endfor %}
         {% if s.data.day2 %}<dt>Day two</dt><dd>{{ s.data.day2.title }}<br>{{ s.data.day2.dateText }}</dd>{% endif %}
@@ -29,27 +29,28 @@ description: Register to attend the International Summit for Western Civilizatio
       <p class="aside-head">Keynote Speakers</p>
       <ul class="aside-list">{% for sp in s.data.speakers %}<li>{{ sp.name }}</li>{% endfor %}</ul>
       {% endif %}
-      <p class="small">Space is limited. Registration is confirmed by email.</p>
+      {% include "calendar.njk" %}
+      <p class="small">Space is limited. Each request is reviewed, and places are confirmed by email.</p>
     </aside>
 
     {% if site.registrationOpen %}
     <form class="form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
-      <input type="hidden" name="subject" value="Summit registration {{ site.currentYear }}">
+      <input type="hidden" name="subject" value="Summit attendance request {{ site.currentYear }}">
       <input type="hidden" name="from_name" value="{{ site.shortName }}">
       <input type="hidden" name="redirect" value="" data-redirect="/thank-you/">
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
 
-      <ol class="steps" aria-hidden="true"><li>Registrant</li><li>Attendance</li><li>Guests</li><li>Needs</li><li>Confirm</li></ol>
+      <ol class="steps" aria-hidden="true"><li>Your details</li><li>Attendance</li><li>Guests</li><li>Needs</li><li>Confirm</li></ol>
 
       <fieldset>
-        <legend><span class="step-num">1</span>Registrant</legend>
-        <label>I am registering as
+        <legend><span class="step-num">1</span>Your details</legend>
+        <label>I am requesting a place as
           <select name="registration_type" id="regType" required>
             <option value="Attendee">An attendee</option>
             <option value="Delegation">A delegation or group</option>
             <option value="Press">Press or media</option>
-            <option value="Staff registering for a principal">Staff registering on behalf of a principal</option>
+            <option value="Staff registering for a principal">Staff, on behalf of a principal</option>
           </select>
         </label>
         <div class="row">
@@ -111,7 +112,7 @@ description: Register to attend the International Summit for Western Civilizatio
 
       <fieldset>
         <legend><span class="step-num">3</span>Additional guests</legend>
-        <p class="hint">Register colleagues, a spouse, or members of a delegation. Each guest receives the same attendance as above.</p>
+        <p class="hint">Add colleagues, a spouse, or members of a delegation. Each guest receives the same attendance as above.</p>
         <div id="guests"></div>
         <button type="button" class="btn btn-ghost-dark btn-sm" id="addGuest">+ Add a guest</button>
         <input type="hidden" name="guest_count" id="guestCount" value="0">
@@ -139,7 +140,8 @@ description: Register to attend the International Summit for Western Civilizatio
         <label class="check"><input type="checkbox" name="updates_opt_in" value="Yes"> Send me news about future Summits.</label>
       </fieldset>
 
-      <button class="btn btn-gold btn-lg" type="submit">Submit Registration</button>
+      <p class="hint">Your details are used only to organize the Summit. See the <a href="{{ '/privacy/' | url }}">privacy notice</a>.</p>
+      <button class="btn btn-gold btn-lg" type="submit">Submit Request</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
     {% else %}
@@ -150,12 +152,14 @@ description: Register to attend the International Summit for Western Civilizatio
 
 <section class="section faq-section">
   <div class="wrap narrow-wrap">
-    <header class="sec-head"><p class="eyebrow">Before You Register</p><h2>Questions</h2></header>
+    <header class="sec-head"><p class="eyebrow">Before You Request a Place</p><h2>Questions</h2></header>
     <div class="faq">
+      <details><summary>How will I know I have a place?</summary><p>Each request is reviewed by the organizers. If a place is available, you will receive a confirmation by email with arrival details.</p></details>
+      <details><summary>Is there a fee to attend?</summary><p>Fee details, if any, will be sent with your confirmation.</p></details>
       <details><summary>Is the National Catholic Prayer Breakfast included?</summary><p>No. The Prayer Breakfast is a separate event with its own registration at <a href="https://catholicprayerbreakfast.com" target="_blank" rel="noopener">catholicprayerbreakfast.com</a>.</p></details>
       <details><summary>Will the Summit be broadcast?</summary><p>The Summit will be filmed. A livestream link will appear on this site on the day, and recordings and texts of the addresses will be posted on the <a href="{{ '/archive/' | url }}">Speeches &amp; Media</a> page afterward.</p></details>
-      <details><summary>Can I register a delegation?</summary><p>Yes. Choose “A delegation or group” and add each member under Additional guests.</p></details>
-      <details><summary>I am press. How do I request credentials?</summary><p>Choose “Press or media” as your registration type. Credentials are confirmed separately.</p></details>
+      <details><summary>Can I request places for a delegation?</summary><p>Yes. Choose “A delegation or group” and add each member under Additional guests.</p></details>
+      <details><summary>I am press. How do I request credentials?</summary><p>Choose “Press or media” as your request type. Credentials are confirmed separately.</p></details>
       <details><summary>Who do I contact with questions?</summary><p>Use the <a href="{{ '/contact/' | url }}">contact form</a>.</p></details>
     </div>
   </div>
