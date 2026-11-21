@@ -1,0 +1,30 @@
+[
+  {
+    "place": "Athens",
+    "text": "There really is … a natural justice and injustice that is binding on all men.",
+    "who": "Aristotle",
+    "work": "Rhetoric",
+    "ref": ", I.13"
+  },
+  {
+    "place": "Rome",
+    "text": "True law is right reason in agreement with nature; it is of universal application, unchanging and everlasting.",
+    "who": "Cicero",
+    "work": "On the Republic",
+    "ref": ", III.22"
+  },
+  {
+    "place": "Jerusalem",
+    "text": "And God created man to his own image: to the image of God he created him: male and female he created them.",
+    "who": "Genesis 1:27",
+    "work": "",
+    "ref": ""
+  },
+  {
+    "place": "Philadelphia",
+    "text": "We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights.",
+    "who": "The Declaration of Independence",
+    "work": "",
+    "ref": ", 1776"
+  }
+]

@@ -23,6 +23,7 @@
 <body class="{{ bodyClass }}">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header" id="siteHeader">
+    <div class="progress" id="progress" aria-hidden="true"></div>
     <div class="wrap header-inner">
       <a class="brand" href="{{ '/' | url }}" aria-label="{{ site.name }}, home">
         <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><use href="#column"/></svg>
@@ -72,6 +73,13 @@
       <p>Images: Raphael, <em>The School of Athens</em>, Vatican. John Trumbull, <em>Declaration of Independence</em>, U.S. Capitol. Giovanni Paolo Panini, <em>Interior of St. Peter’s, Rome</em>, Detroit Institute of Arts. Thomas Cole, <em>The Consummation of Empire</em>, New-York Historical Society. U.S. Capitol west front, Architect of the Capitol. All public domain, via Wikimedia Commons.</p>
     </div>
   </footer>
+  {% if site.registrationOpen and page.url != "/register/" and page.url != "/thank-you/" %}
+  {% set cs = collections.summits | current(site.currentYear) %}
+  <div class="sticky-cta" id="stickyCta" hidden>
+    <span><b>{{ cs.data.dateText }}</b>{{ cs.data.location }}</span>
+    <a class="btn btn-gold btn-sm" href="{{ '/register/' | url }}">Request to Attend</a>
+  </div>
+  {% endif %}
   <script src="{{ '/assets/js/main.js' | url }}"></script>
   {% if site.cloudflareAnalyticsToken %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ site.cloudflareAnalyticsToken }}"}'></script>{% endif %}
 </body>

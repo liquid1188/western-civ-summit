@@ -49,11 +49,20 @@ bodyClass: home
 </section>
 {% endif %}
 
-<section class="conviction">
+<section class="conviction voices" id="voices" aria-label="Voices of the tradition">
   <div class="wrap narrow-wrap reveal">
     <svg class="orn" viewBox="0 0 160 16" aria-hidden="true"><use href="#orn"/></svg>
-    <blockquote class="conviction-text">“True law is right reason in agreement with nature; it is of universal application, unchanging and everlasting.”</blockquote>
-    <p class="conviction-cite">Cicero, <em>On the Republic</em>, III.22</p>
+    <div class="voices-stage">
+      {% for v in voices %}
+      <figure class="voice{% if v.place == 'Rome' %} on{% endif %}">
+        <blockquote class="conviction-text">“{{ v.text }}”</blockquote>
+        <figcaption class="conviction-cite">{{ v.who }}{% if v.work %}, <em>{{ v.work }}</em>{% endif %}{{ v.ref }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    <div class="voices-tabs" role="tablist" aria-label="Choose a voice">
+      {% for v in voices %}<button type="button" role="tab" aria-selected="{{ 'true' if v.place == 'Rome' else 'false' }}">{{ v.place }}</button>{% endfor %}
+    </div>
   </div>
 </section>
 

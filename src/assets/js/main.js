@@ -105,3 +105,61 @@
     });
   }
 })();
+
+(function () {
+  // Scroll progress line
+  var bar = document.getElementById("progress");
+  // Phone bar with the request button: appears after the first screen, hides near the footer
+  var cta = document.getElementById("stickyCta"), foot = document.querySelector(".site-footer");
+  if (cta) cta.hidden = false;
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var doc = document.documentElement, max = doc.scrollHeight - window.innerHeight, y = window.scrollY;
+    if (bar) bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
+    if (cta) {
+      var nearFoot = foot && foot.getBoundingClientRect().top < window.innerHeight - 40;
+      cta.classList.toggle("show", y > window.innerHeight * 0.8 && !nearFoot);
+    }
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener("resize", update); update();
+
+  // Countdown digits tick
+  var cd = document.getElementById("countdown");
+  if (cd && "MutationObserver" in window) {
+    cd.querySelectorAll("b").forEach(function (b) {
+      new MutationObserver(function () { b.classList.remove("tick"); void b.offsetWidth; b.classList.add("tick"); })
+        .observe(b, { childList: true, characterData: true, subtree: true });
+    });
+  }
+})();
+
+(function () {
+  // Voices: quotations take turns. Tabs choose one. Pauses under the pointer and off screen.
+  var root = document.getElementById("voices"); if (!root) return;
+  var vs = root.querySelectorAll(".voice"), tabs = root.querySelectorAll(".voices-tabs button");
+  var i = 0, timer = null, DUR = 8000, visible = false, hover = false;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  vs.forEach(function (v, k) { if (v.classList.contains("on")) i = k; });
+  function show(n) {
+    i = (n + vs.length) % vs.length;
+    vs.forEach(function (v, k) { v.classList.toggle("on", k === i); });
+    tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); });
+  }
+  function stop() { clearInterval(timer); timer = null; root.classList.remove("playing"); }
+  function play() {
+    stop(); if (reduce || !visible || hover) return;
+    show(i + 1); root.classList.add("playing");
+    timer = setInterval(function () { show(i + 1); }, DUR);
+  }
+  tabs.forEach(function (b, k) { b.addEventListener("click", function () { stop(); show(k); }); });
+  root.addEventListener("mouseenter", function () { hover = true; stop(); });
+  root.addEventListener("mouseleave", function () { hover = false; setTimeout(function () { if (!hover) play(); }, 2500); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      visible = es[0].isIntersecting;
+      if (visible) { if (!timer) setTimeout(function () { if (visible && !timer) play(); }, 5000); } else stop();
+    }, { threshold: 0.5 }).observe(root);
+  }
+})();
