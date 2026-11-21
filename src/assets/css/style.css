@@ -578,7 +578,7 @@ p { text-wrap: pretty; }
 .nav a:not(.btn) { border-bottom: 0; background: linear-gradient(var(--gold), var(--gold)) center bottom / 0 1px no-repeat; transition: background-size .3s, color .2s; }
 .nav a:not(.btn):hover, .nav a[aria-current="page"]:not(.btn) { background-size: 100% 1px; }
 
-/* Voices: one quotation at a time, from Athens to Philadelphia */
+/* Voices: one quotation at a time from Athens, Rome, and Jerusalem */
 .voice { margin: 0 0 2.4rem; }
 .voices-tabs { display: none; }
 .js .voices-stage { display: grid; align-items: center; }
@@ -650,3 +650,38 @@ p { text-wrap: pretty; }
   .voices-tabs button { font-size: .6rem; letter-spacing: .16em; padding: 10px 0; }
   .site-footer { padding-bottom: 70px; }
 }
+
+/* ───────── Layout variety: not every section is centered ───────── */
+
+/* Purpose and Vision: heading left, text right */
+.editorial { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.editorial-head { position: sticky; top: calc(var(--head-h) + 44px); }
+.editorial-head h2 { font-size: clamp(2.3rem, 4.4vw, 3.7rem); margin: 0; }
+.editorial-head h2::after { content: ""; display: block; width: 64px; height: 1px; background: var(--gold); margin: 1.5rem 0 0; }
+.editorial-body { max-width: none; margin: 0; }
+.editorial-body p:first-child { font: 500 1.5rem/1.5 var(--serif); color: var(--navy); }
+
+/* Headings that line up with the list below them */
+.sec-head.left { text-align: left; margin-left: 0; margin-right: 0; }
+.sec-head.left h2::after { margin-left: 0; }
+
+/* Why This Summit: a numbered list in two columns */
+.found-list { list-style: none; counter-reset: f; padding: 0; margin: 0 auto 3.2rem; max-width: 1040px; display: grid; grid-auto-flow: column; grid-template-rows: repeat(3, auto); grid-template-columns: 1fr 1fr; column-gap: clamp(36px, 6vw, 84px); border-top: 1px solid rgba(200, 164, 90, .5); }
+.found-list li { counter-increment: f; display: grid; grid-template-columns: 58px minmax(0, 1fr); align-items: baseline; padding: 24px 0; border-bottom: 1px solid rgba(200, 164, 90, .3); font: 500 1.45rem/1.3 var(--serif); color: #fff; text-shadow: 0 1px 14px rgba(10, 16, 29, .95); text-wrap: balance; }
+.found-list li::before { content: counter(f, upper-roman); font: 400 .82rem var(--caps); letter-spacing: .22em; color: var(--gold); }
+.js .found-list li { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+.js .found-list.in li { opacity: 1; transform: none; }
+.js .found-list.in li:nth-child(2) { transition-delay: .08s; } .js .found-list.in li:nth-child(3) { transition-delay: .16s; }
+.js .found-list.in li:nth-child(4) { transition-delay: .24s; } .js .found-list.in li:nth-child(5) { transition-delay: .32s; }
+.js .found-list.in li:nth-child(6) { transition-delay: .4s; }
+
+@media (max-width: 980px) {
+  .editorial { grid-template-columns: 1fr; gap: 26px; }
+  .editorial-head { position: static; }
+}
+@media (max-width: 760px) {
+  .found-list { grid-auto-flow: row; grid-template-rows: none; grid-template-columns: 1fr; }
+  .found-list li { grid-template-columns: 46px minmax(0, 1fr); padding: 18px 0; font-size: 1.25rem; }
+  .editorial-body p:first-child { font-size: 1.3rem; }
+}
+@media (prefers-reduced-motion: reduce) { .js .found-list li { opacity: 1; transform: none; } }
