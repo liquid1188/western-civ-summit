@@ -36,7 +36,7 @@ collections:
           - { name: venue, label: Venue line, widget: string, required: false }
           - { name: description, label: Description, widget: text }
       - name: cosponsors
-        label: Co-sponsors
+        label: Collaborating organizations
         widget: list
         required: false
         fields:
