@@ -1,0 +1,25 @@
+---
+layout: base.njk
+title: Program
+description: The program for the International Summit for Western Civilization.
+---
+{% set s = collections.summits | current(site.currentYear) %}
+<section class="page-head" style="--img:url('{{ '/assets/img/art/declaration.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">{{ s.data.edition }} Summit · {{ s.data.dateText }}</p>
+    <h1>Proposed Program</h1>
+    <p class="page-sub">{{ s.data.title }}: {{ s.data.subtitle }}</p>
+    <p class="page-meta">{{ s.data.location }} · {{ s.data.venue }} · {{ s.data.context }}</p>
+    {% include "cosponsors.njk" %}
+  </div>
+</section>
+{% include "livestream.njk" %}
+<section class="section">
+  <div class="wrap narrow-wrap">
+    {% if s.data.speakers.length %}<header class="sec-head"><p class="eyebrow">Keynote Speakers</p><h2>Addressing the Summit</h2></header>{% include "speakers.njk" %}<header class="sec-head mt"><p class="eyebrow">{{ s.data.dateText }}</p><h2>Schedule</h2></header>{% endif %}
+    {% include "program-list.njk" %}
+    {% include "day2.njk" %}
+    <p class="note">Program and speakers are subject to change.</p>
+    <p class="center"><a class="btn btn-gold" href="{{ '/register/' | url }}">Register to Attend</a></p>
+  </div>
+</section>

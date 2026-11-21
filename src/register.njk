@@ -1,0 +1,162 @@
+---
+layout: base.njk
+title: Register
+description: Register to attend the International Summit for Western Civilization.
+---
+{% set s = collections.summits | current(site.currentYear) %}
+<section class="page-head" style="--img:url('{{ '/assets/img/art/capitol.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">{{ s.data.dateText }} · {{ s.data.location }}</p>
+    <h1>Register to Attend</h1>
+    <p class="page-sub">{{ s.data.title }}: {{ s.data.subtitle }}</p>
+    {% include "cosponsors.njk" %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap form-wrap">
+    <aside class="form-aside">
+      <h2>The {{ s.data.edition }} Summit</h2>
+      <dl>
+        <dt>Date</dt><dd>{{ s.data.dateText }}</dd>
+        {% for item in s.data.program %}{% if item.label == "Registration" %}<dt>Registration</dt><dd>{{ item.time }}</dd>{% endif %}{% endfor %}
+        <dt>Summit</dt><dd>2:00–5:00 p.m.</dd>
+        {% for item in s.data.program %}{% if item.label == "Reception" %}<dt>Reception</dt><dd>{{ item.time }}</dd>{% endif %}{% endfor %}
+        {% if s.data.day2 %}<dt>Day two</dt><dd>{{ s.data.day2.title }}<br>{{ s.data.day2.dateText }}</dd>{% endif %}
+        <dt>Location</dt><dd>{{ s.data.location }}<br>{{ s.data.venue }}</dd>
+      </dl>
+      {% if s.data.speakers.length %}
+      <p class="aside-head">Keynote Speakers</p>
+      <ul class="aside-list">{% for sp in s.data.speakers %}<li>{{ sp.name }}</li>{% endfor %}</ul>
+      {% endif %}
+      <p class="small">Space is limited. Registration is confirmed by email.</p>
+    </aside>
+
+    {% if site.registrationOpen %}
+    <form class="form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
+      <input type="hidden" name="subject" value="Summit registration {{ site.currentYear }}">
+      <input type="hidden" name="from_name" value="{{ site.shortName }}">
+      <input type="hidden" name="redirect" value="" data-redirect="/thank-you/">
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+      <ol class="steps" aria-hidden="true"><li>Registrant</li><li>Attendance</li><li>Guests</li><li>Needs</li><li>Confirm</li></ol>
+
+      <fieldset>
+        <legend><span class="step-num">1</span>Registrant</legend>
+        <label>I am registering as
+          <select name="registration_type" id="regType" required>
+            <option value="Attendee">An attendee</option>
+            <option value="Delegation">A delegation or group</option>
+            <option value="Press">Press or media</option>
+            <option value="Staff registering for a principal">Staff registering on behalf of a principal</option>
+          </select>
+        </label>
+        <div class="row">
+          <label>First name<input name="first_name" required autocomplete="given-name"></label>
+          <label>Last name<input name="last_name" required autocomplete="family-name"></label>
+        </div>
+        <div class="row">
+          <label>Title or honorific <span class="opt">(optional)</span><input name="honorific" placeholder="Hon., H.E., Dr., Rev., Prof."></label>
+          <label>Post-nominals <span class="opt">(optional)</span><input name="post_nominals" placeholder="JD, PhD, JCL"></label>
+        </div>
+        <div class="row">
+          <label>Position<input name="position" required autocomplete="organization-title"></label>
+          <label>Organization or office<input name="organization" required autocomplete="organization"></label>
+        </div>
+        <div class="row">
+          <label>Email<input type="email" name="email" required autocomplete="email"></label>
+          <label>Phone<input type="tel" name="phone" required autocomplete="tel"></label>
+        </div>
+        <div class="row">
+          <label>Country<input name="country" required autocomplete="country-name"></label>
+          <label>City <span class="opt">(optional)</span><input name="city" autocomplete="address-level2"></label>
+        </div>
+
+        <div class="cond" data-show="Staff registering for a principal">
+          <p class="cond-note">Please give the principal’s details above, and your own contact details here.</p>
+          <div class="row">
+            <label>Your name<input name="staff_name"></label>
+            <label>Your email<input type="email" name="staff_email"></label>
+          </div>
+        </div>
+        <div class="cond" data-show="Press">
+          <p class="cond-note">Press credentials are confirmed separately. Broadcast crews, please describe your equipment.</p>
+          <div class="row">
+            <label>Outlet<input name="press_outlet"></label>
+            <label>Role
+              <select name="press_role"><option>Reporter</option><option>Photographer</option><option>Camera or broadcast crew</option><option>Producer</option><option>Other</option></select>
+            </label>
+          </div>
+          <label>Equipment and coverage plans <span class="opt">(optional)</span><textarea name="press_notes" rows="2"></textarea></label>
+        </div>
+
+        <p class="label">Which best describes you?</p>
+        <div class="chips">
+          {% for c in ["Legislator", "Government official", "Diplomat", "Ecclesiastical leader", "Jurist or attorney", "Scholar", "Journalist", "Civil society leader", "Student", "Other"] %}
+          <label class="chip"><input type="radio" name="category" value="{{ c }}" required><span>{{ c }}</span></label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step-num">2</span>Attendance</legend>
+        <p class="label">I plan to attend</p>
+        <label class="check"><input type="checkbox" name="attending_summit" value="Yes" checked> The Summit, {{ s.data.dateText }}, 2:00–5:00 p.m.</label>
+        <label class="check"><input type="checkbox" name="attending_reception" value="Yes" checked> The reception, 5:00–6:00 p.m.</label>
+        {% if s.data.day2 %}<label class="check"><input type="checkbox" name="attending_day2" value="Yes"> The {{ s.data.day2.title }}, {{ s.data.day2.dateText }}</label>{% endif %}
+        <label class="check"><input type="checkbox" name="attending_prayer_breakfast" value="Yes"> I am also attending the National Catholic Prayer Breakfast</label>
+        <p class="hint">The Prayer Breakfast is a separate event with its own registration at <a href="https://catholicprayerbreakfast.com" target="_blank" rel="noopener">catholicprayerbreakfast.com</a>.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step-num">3</span>Additional guests</legend>
+        <p class="hint">Register colleagues, a spouse, or members of a delegation. Each guest receives the same attendance as above.</p>
+        <div id="guests"></div>
+        <button type="button" class="btn btn-ghost-dark btn-sm" id="addGuest">+ Add a guest</button>
+        <input type="hidden" name="guest_count" id="guestCount" value="0">
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step-num">4</span>Needs and preferences</legend>
+        <div class="row">
+          <label>Preferred language
+            <select name="language"><option>English</option><option>Spanish</option><option>Italian</option><option>French</option><option>Portuguese</option><option>German</option><option>Polish</option><option>Other</option></select>
+          </label>
+          <label class="check check-inline"><input type="checkbox" name="interpretation_needed" value="Yes"> I would benefit from interpretation</label>
+        </div>
+        <label>Dietary requirements <span class="opt">(optional)</span><input name="dietary"></label>
+        <label>Accessibility needs <span class="opt">(optional)</span><textarea name="accessibility" rows="2"></textarea></label>
+        <label>How did you hear about the Summit? <span class="opt">(optional)</span>
+          <select name="referral"><option value="">Choose one</option><option>Invitation</option><option>International Catholic Jurists Forum</option>{% for c in s.data.cosponsors %}{% if c.name != "International Catholic Jurists Forum" %}<option>{{ c.name }}</option>{% endif %}{% endfor %}<option>National Catholic Prayer Breakfast</option><option>A colleague</option><option>News or social media</option><option>Other</option></select>
+        </label>
+        <label>Anything else we should know? <span class="opt">(optional)</span><textarea name="message" rows="3"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="step-num">5</span>Confirm</legend>
+        <label class="check"><input type="checkbox" name="recording_consent" value="Agreed" required> I understand the Summit will be photographed, filmed, and may be broadcast or livestreamed, including by C-SPAN, and that recordings will be published on this site.</label>
+        <label class="check"><input type="checkbox" name="updates_opt_in" value="Yes"> Send me news about future Summits.</label>
+      </fieldset>
+
+      <button class="btn btn-gold btn-lg" type="submit">Submit Registration</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+    {% else %}
+    <div class="empty"><p>Registration is closed. Please <a href="{{ '/contact/' | url }}">contact us</a> with any questions.</p></div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="wrap narrow-wrap">
+    <header class="sec-head"><p class="eyebrow">Before You Register</p><h2>Questions</h2></header>
+    <div class="faq">
+      <details><summary>Is the National Catholic Prayer Breakfast included?</summary><p>No. The Prayer Breakfast is a separate event with its own registration at <a href="https://catholicprayerbreakfast.com" target="_blank" rel="noopener">catholicprayerbreakfast.com</a>.</p></details>
+      <details><summary>Will the Summit be broadcast?</summary><p>The Summit will be filmed. A livestream link will appear on this site on the day, and recordings and texts of the addresses will be posted on the <a href="{{ '/archive/' | url }}">Speeches &amp; Media</a> page afterward.</p></details>
+      <details><summary>Can I register a delegation?</summary><p>Yes. Choose “A delegation or group” and add each member under Additional guests.</p></details>
+      <details><summary>I am press. How do I request credentials?</summary><p>Choose “Press or media” as your registration type. Credentials are confirmed separately.</p></details>
+      <details><summary>Who do I contact with questions?</summary><p>Use the <a href="{{ '/contact/' | url }}">contact form</a>.</p></details>
+    </div>
+  </div>
+</section>

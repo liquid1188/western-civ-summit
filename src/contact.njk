@@ -1,0 +1,34 @@
+---
+layout: base.njk
+title: Contact
+description: Inquiries about the International Summit for Western Civilization.
+---
+<section class="page-head" style="--img:url('{{ '/assets/img/art/athens.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">Inquiries</p>
+    <h1>Contact</h1>
+    <p class="page-sub">Questions about the Summit, speaking, press, or partnership.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap narrow-wrap">
+    <form class="form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="{{ site.web3formsKey }}">
+      <input type="hidden" name="subject" value="Summit inquiry">
+      <input type="hidden" name="from_name" value="{{ site.shortName }}">
+      <input type="hidden" name="redirect" value="" data-redirect="/thank-you/">
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+      <div class="row">
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+      </div>
+      <label>Organization <span class="opt">(optional)</span><input name="organization" autocomplete="organization"></label>
+      <label>Topic
+        <select name="topic"><option>General question</option><option>Registration</option><option>Press</option><option>Speaking</option><option>Partnership or sponsorship</option></select>
+      </label>
+      <label>Message<textarea name="message" rows="6" required></textarea></label>
+      <button class="btn btn-gold btn-lg" type="submit">Send</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

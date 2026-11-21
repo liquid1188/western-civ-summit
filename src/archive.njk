@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Speeches & Media
+description: Speeches, video recordings, and programs from each year's Summit.
+---
+<section class="page-head" style="--img:url('{{ '/assets/img/art/stpeters.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">Archive</p>
+    <h1>Speeches &amp; Media</h1>
+    <p class="page-sub">Video, speeches, photos, and programs from each year’s Summit.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap year-grid">
+    {% for s in collections.summits %}
+    <a class="year-card" href="{{ s.url | url }}">
+      <span class="year-num">{{ s.data.year }}</span>
+      <span class="year-edition">{{ s.data.edition }} Summit</span>
+      <strong>{{ s.data.title }}</strong>
+      <span>{{ s.data.subtitle }}</span>
+      <span class="year-meta">{{ s.data.dateText }} · {{ s.data.location }}</span>
+      <span class="year-status">{% if s.data.status == "upcoming" %}Upcoming · Media posted after the Summit{% else %}{{ s.data.videos.length }} videos · {{ s.data.speeches.length }} speeches · {{ s.data.photos.length }} photos{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>

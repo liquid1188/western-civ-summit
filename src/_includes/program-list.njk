@@ -1,0 +1,13 @@
+<ol class="program">
+  {% for item in s.data.program %}
+  <li class="program-item">
+    <div class="program-time">{{ item.time }}</div>
+    <div class="program-body">
+      <p class="program-label">{{ item.label }}</p>
+      {% if item.title != item.label %}<h3>{{ item.title }}</h3>{% endif %}
+      {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+      {% if item.speaker %}<p class="program-speaker">{{ item.speaker }}</p>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>

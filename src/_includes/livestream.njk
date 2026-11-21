@@ -1,0 +1,18 @@
+{% set ls = s.data.livestream %}
+{% if ls and ls.url %}
+<section class="live-band{% if ls.live %} is-live{% endif %}">
+  <div class="wrap live-inner">
+    <div>
+      <p class="live-tag">{% if ls.live %}<span class="dot"></span>Live now{% else %}Livestream{% endif %}</p>
+      <h2>{% if ls.live %}The Summit is underway{% else %}Watch the Summit online{% endif %}</h2>
+      <p>{{ s.data.dateText }} · {{ s.data.timeText }}</p>
+    </div>
+    {% set yt = ls.url | ytid %}
+    {% if "youtu" in ls.url %}
+    <div class="video-frame live-frame"><iframe src="https://www.youtube-nocookie.com/embed/{{ yt }}" title="Summit livestream" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+    {% else %}
+    <a class="btn btn-gold btn-lg" href="{{ ls.url }}" rel="noopener" target="_blank">{{ ls.label or "Watch live" }}</a>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

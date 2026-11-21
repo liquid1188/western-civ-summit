@@ -1,0 +1,56 @@
+---
+layout: base.njk
+---
+{% set s = { data: { program: program, speakers: speakers or [], cosponsors: cosponsors or [], day2: day2, livestream: livestream, dateText: dateText, timeText: timeText }  } %}
+<section class="page-head" style="--img:url('{{ '/assets/img/art/athens.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">The {{ edition }} Summit · {{ year }}</p>
+    <h1>{{ title }}</h1>
+    <p class="page-sub">{{ subtitle }}</p>
+    <p class="page-meta">{{ dateText }} · {{ location }}{% if venue %} · {{ venue }}{% endif %}</p>
+    {% include "cosponsors.njk" %}
+  </div>
+</section>
+{% if status == "upcoming" %}{% include "livestream.njk" %}{% endif %}
+
+<section class="section">
+  <div class="wrap narrow-wrap">
+    <nav class="media-tabs"><a href="#video">Video</a><a href="#speeches">Speeches</a><a href="#photos">Photos</a><a href="#program">Program</a></nav>
+
+    <h2 id="video">Video</h2>
+    {% if videos.length %}
+    <div class="video-grid">
+      {% for v in videos %}
+      <figure class="video">
+        <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{{ v.url | ytid }}" title="{{ v.title }}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <figcaption><strong>{{ v.title }}</strong>{% if v.speaker %}<span>{{ v.speaker }}</span>{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% else %}<div class="empty">Recordings of each address and session will be posted here after {{ dateText }}.</div>{% endif %}
+
+    <h2 id="speeches" class="mt">Speeches</h2>
+    {% if speeches.length %}
+    <ul class="speech-list">
+      {% for sp in speeches %}
+      <li>
+        <div><strong>{{ sp.title }}</strong>{% if sp.speaker %}<span>{{ sp.speaker }}</span>{% endif %}{% if sp.summary %}<p>{{ sp.summary }}</p>{% endif %}</div>
+        {% if sp.file %}<a class="btn btn-navy btn-sm" href="{{ sp.file | url }}">Read the text</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}<div class="empty">The texts of the addresses will be published here after the Summit.</div>{% endif %}
+
+    <h2 id="photos" class="mt">Photos</h2>
+    {% if photos.length %}
+    <div class="photo-grid">
+      {% for p in photos %}<figure><a href="{{ p.image | url }}" target="_blank"><img src="{{ p.image | url }}" alt="{{ p.caption or title }}" loading="lazy"></a>{% if p.caption %}<figcaption>{{ p.caption }}</figcaption>{% endif %}</figure>{% endfor %}
+    </div>
+    {% else %}<div class="empty">A photo gallery from the Summit will appear here.</div>{% endif %}
+
+    {% if speakers.length %}<h2 class="mt">Keynote Speakers</h2>{% include "speakers.njk" %}{% endif %}
+    <h2 id="program" class="mt">Program</h2>
+    {% include "program-list.njk" %}
+    {% include "day2.njk" %}
+  </div>
+</section>

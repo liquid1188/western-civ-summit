@@ -1,0 +1,7 @@
+{
+  "name": "western-civ-summit",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "eleventy", "start": "eleventy --serve" },
+  "dependencies": { "@11ty/eleventy": "^3.1.8" }
+}

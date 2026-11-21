@@ -1,0 +1,111 @@
+backend:
+  name: github
+  repo: liquid1188/western-civ-summit
+  branch: main
+media_folder: src/media
+public_folder: /media
+collections:
+  - name: summits
+    label: Summits by Year
+    label_singular: Summit
+    folder: src/summits
+    create: true
+    slug: "{{year}}"
+    identifier_field: year
+    summary: "{{year}} · {{title}}"
+    sortable_fields: [year]
+    fields:
+      - { name: year, label: Year, widget: number, value_type: int }
+      - { name: edition, label: Edition (e.g. Inaugural, Second), widget: string }
+      - { name: title, label: Theme title, widget: string }
+      - { name: subtitle, label: Subtitle, widget: string }
+      - { name: dateText, label: Date as shown, widget: string, hint: "April 21, 2027" }
+      - { name: dateISO, label: Date, widget: datetime, time_format: false, format: "YYYY-MM-DD" }
+      - { name: timeText, label: Times line, widget: string }
+      - { name: location, label: City, widget: string }
+      - { name: venue, label: Venue, widget: string, required: false }
+      - { name: context, label: Context line, widget: string, required: false }
+      - { name: status, label: Status, widget: select, options: [upcoming, past] }
+      - name: day2
+        label: Day two (optional)
+        widget: object
+        required: false
+        fields:
+          - { name: dateText, label: Date as shown, widget: string }
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: text }
+      - name: cosponsors
+        label: Co-sponsors
+        widget: list
+        required: false
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: url, label: Website, widget: string, required: false }
+      - name: speakers
+        label: Keynote speakers
+        widget: list
+        required: false
+        summary: "{{name}}"
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: role, label: Role, widget: string, default: Keynote Speaker }
+          - { name: bio, label: One-line bio, widget: string, required: false }
+          - { name: photo, label: Photo, widget: image, required: false }
+      - name: program
+        label: Program
+        widget: list
+        summary: "{{time}} · {{label}}"
+        fields:
+          - { name: time, label: Time, widget: string }
+          - { name: label, label: Label (e.g. Session I), widget: string }
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: text, required: false }
+          - { name: speaker, label: Speaker, widget: string, required: false }
+      - name: livestream
+        label: Livestream
+        widget: object
+        required: false
+        fields:
+          - { name: live, label: Show "Live now" banner, widget: boolean, default: false }
+          - { name: url, label: Stream link (C-SPAN page or YouTube), widget: string, required: false }
+          - { name: label, label: Button text, widget: string, default: Watch live on C-SPAN }
+      - name: videos
+        label: Videos
+        widget: list
+        required: false
+        summary: "{{title}}"
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: speaker, label: Speaker, widget: string, required: false }
+          - { name: url, label: YouTube link, widget: string }
+      - name: speeches
+        label: Speeches
+        widget: list
+        required: false
+        summary: "{{title}}"
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: speaker, label: Speaker, widget: string, required: false }
+          - { name: summary, label: Short summary, widget: text, required: false }
+          - { name: file, label: PDF of the text, widget: file, required: false }
+      - name: photos
+        label: Photos
+        widget: list
+        required: false
+        fields:
+          - { name: image, label: Photo, widget: image }
+          - { name: caption, label: Caption, widget: string, required: false }
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site
+        file: src/_data/site.json
+        fields:
+          - { name: name, label: Site name, widget: string }
+          - { name: shortName, label: Short name, widget: string }
+          - { name: currentYear, label: Current Summit year (shown on Home, Program, Register), widget: number, value_type: int }
+          - { name: description, label: Search description, widget: text }
+          - { name: web3formsKey, label: Web3Forms access key, widget: string }
+          - { name: registrationOpen, label: Registration open, widget: boolean }
+          - { name: setupMode, label: Hide from search engines, widget: boolean }

@@ -1,0 +1,20 @@
+[
+  {
+    "city": "Athens",
+    "theme": "The Greek inquiry into reason and virtue",
+    "names": "Socrates · Plato · Aristotle",
+    "icon": "<g fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round'><path d='M10 14h44'/><circle cx='16' cy='18' r='4'/><circle cx='48' cy='18' r='4'/><path d='M20 18h24M22 22v30M28 22v30M36 22v30M42 22v30M16 52h32M12 57h40'/></g>"
+  },
+  {
+    "city": "Rome",
+    "theme": "The Roman contribution to law",
+    "names": "Cicero · Seneca · Marcus Aurelius",
+    "icon": "<g fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round'><path d='M8 12h48M10 16h44M12 16v40M52 16v40M8 56h48'/><path d='M22 56V36a10 10 0 0 1 20 0v20'/><path d='M32 22v4'/></g>"
+  },
+  {
+    "city": "Jerusalem",
+    "theme": "The Judeo-Christian understanding of the inherent dignity of each human person",
+    "names": "St. Augustine · Maimonides · St. Thomas Aquinas",
+    "icon": "<g fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round'><path d='M12 56V24a10 10 0 0 1 20 0v32zM32 56V24a10 10 0 0 1 20 0v32zM12 56h40'/><path d='M17 32h10M17 38h10M17 44h10M37 32h10M37 38h10M37 44h10'/></g>"
+  }
+]

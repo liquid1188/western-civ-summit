@@ -1,0 +1,12 @@
+{% if s.data.speakers.length %}
+<div class="speaker-grid">
+  {% for sp in s.data.speakers %}
+  <article class="speaker">
+    {% if sp.photo %}<img src="{{ sp.photo | url }}" alt="{{ sp.name }}">{% else %}<div class="speaker-mono" aria-hidden="true">{{ sp.name | replace("His Eminence ", "") | first }}</div>{% endif %}
+    <p class="speaker-role">{{ sp.role }}</p>
+    <h3>{{ sp.name }}</h3>
+    {% if sp.bio %}<p>{{ sp.bio }}</p>{% endif %}
+  </article>
+  {% endfor %}
+</div>
+{% endif %}

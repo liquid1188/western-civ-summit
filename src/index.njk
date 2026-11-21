@@ -1,0 +1,177 @@
+---
+layout: base.njk
+title: International Summit for Western Civilization
+bodyClass: home
+---
+{% set s = collections.summits | current(site.currentYear) %}
+<section class="hero">
+  <div class="hero-art" style="background-image:url('{{ '/assets/img/art/athens.jpg' | url }}')" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="kicker"><span>The {{ s.data.edition }} International Summit for Western Civilization</span></p>
+    <h1>{{ s.data.title }}</h1>
+    <p class="hero-sub">{{ s.data.subtitle }}</p>
+    <p class="hero-date"><span>{{ s.data.dateText }}</span><i></i><span>{{ s.data.location }}</span></p>
+    <div class="hero-cta">
+      {% if site.registrationOpen %}<a class="btn btn-gold btn-lg" href="{{ '/register/' | url }}">Register to Attend</a>{% endif %}
+      <a class="btn btn-ghost btn-lg" href="{{ '/program/' | url }}">View the Program</a>
+    </div>
+  </div>
+  <div class="hero-bar">
+    <div class="wrap hero-bar-inner">
+      <div class="countdown" id="countdown" data-start="{{ s.data.startISO }}" hidden>
+        <div><b data-u="d">0</b><span>Days</span></div>
+        <div><b data-u="h">0</b><span>Hours</span></div>
+        <div><b data-u="m">0</b><span>Minutes</span></div>
+        <div><b data-u="s">0</b><span>Seconds</span></div>
+      </div>
+      <div class="hero-facts">
+        <p>{{ s.data.timeText }}</p>
+        <p>{{ s.data.context }}</p>
+        {% include "cosponsors.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "livestream.njk" %}
+
+<section class="conviction">
+  <div class="wrap narrow-wrap reveal">
+    <svg class="orn" viewBox="0 0 160 16" aria-hidden="true"><use href="#orn"/></svg>
+    <p class="conviction-text">Every human person possesses God-given inherent dignity and fundamental rights that government must recognize and protect. <em>These rights precede the state.</em></p>
+    <p class="conviction-cite">The foundational conviction at the heart of Western Civilization</p>
+  </div>
+</section>
+
+<section class="section speakers-section">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Keynote Speakers</p>
+      <h2>Addressing the Summit</h2>
+    </header>
+    <div class="reveal">{% include "speakers.njk" %}</div>
+  </div>
+</section>
+
+<section class="section occasion">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">The Occasion</p>
+      <h2>Recovering the Foundations of Public Life</h2>
+    </header>
+    <p class="lede reveal">The renewal of Western Civilization requires serious reflection on the principles that give public life its moral purpose. Its inheritance includes: the Greek inquiry into reason and virtue, the Roman contribution to law, and the Christian understanding of the inherent dignity of each human person. The tradition of natural law offers a basis for judging the exercise of power by standards of justice that government does not create.</p>
+
+    <ul class="inheritance reveal" aria-label="The inheritance of Western Civilization">
+      {% for h in heritage %}
+      <li>
+        <svg viewBox="0 0 64 64" aria-hidden="true">{{ h.icon | safe }}</svg>
+        <h3>{{ h.city }}</h3>
+        <p class="inh-theme">{{ h.theme }}</p>
+        <p class="inh-names">{{ h.names }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <div class="split">
+      <div class="split-text reveal">
+        <p>This year in Munich and, more explicitly, in Athens, Secretary of State Marco Rubio drew attention to the West’s shared inheritance. In Athens, he expressly connected it with Christian theology and the natural law tradition. Those remarks underscore the relevance of questions that deserve sustained examination.</p>
+        <p>The Summit will examine how the inheritance of Natural Law can guide public policy and leadership today. In practical terms; how leaders can translate respect for human dignity and rights that precede the state into just laws, sound institutions, and a lasting peace.</p>
+        <p class="plates-label">Building on Two Events</p>
+        <p>With this Summit, we are building on two events: the 250th anniversary of the founding of the United States, and the Annual Natural Law Forum in Rome.</p>
+      </div>
+      <div class="plates">
+        <figure class="plate reveal">
+          <img src="{{ '/assets/img/art/declaration.jpg' | url }}" alt="John Trumbull’s painting of the presentation of the Declaration of Independence" loading="lazy" width="1920" height="1261">
+          <figcaption>
+            <span class="plate-kicker">1776 · 2026</span>
+            <h3>The 250th Anniversary of the United States</h3>
+            <p>The founding of the United States and the Declaration of Independence with its historic guidance and self-evident truth that all men are created equal and are endowed by their Creator with certain unalienable rights.</p>
+          </figcaption>
+        </figure>
+        <figure class="plate reveal">
+          <img src="{{ '/assets/img/art/stpeters.jpg' | url }}" alt="Giovanni Paolo Panini’s painting of the interior of St. Peter’s Basilica in Rome" loading="lazy" width="1600" height="1440">
+          <figcaption>
+            <span class="plate-kicker">Rome · October 2026</span>
+            <h3>The Annual Natural Law Forum</h3>
+            <p>The Annual Natural Law Forum in Rome, in October 2026 which marked a revival in the importance of re-establishing the Natural Law tradition and its application.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section vision">
+  <div class="wrap narrow-wrap reveal">
+    <header class="sec-head">
+      <p class="eyebrow">Purpose and Vision</p>
+      <h2>Rights That Precede the State</h2>
+    </header>
+    <div class="cols">
+      <p>Building upon the occasion of the National Catholic Prayer Breakfast the Inaugural International Summit for Western Civilization will bring together leaders to learn about and consider restoration of the natural law tradition.</p>
+      <p>At the heart of Western Civilization is the foundational conviction: every human person possesses God-given inherent dignity and fundamental rights that government must recognize and protect. These rights precede the state. They are rooted in our common human nature and carry corresponding responsibilities toward one another and the common good.</p>
+      <p>Natural law provides a rational basis for explaining these principles and applying them to public policy and the law which governs public life. The natural law tradition can help leaders address the moral questions underlying contemporary disputes over law, freedom, security, and national identity.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section why" style="--img:url('{{ '/assets/img/art/capitol.jpg' | url }}')">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow light">Why This Summit?</p>
+      <h2>To Renew Western Civilization in the Face of Threats Against It</h2>
+      <p class="sec-lede">The renewal of Western civilization requires a renewed understanding of the human person and of the moral foundations upon which sound institutions depend. Those foundations include:</p>
+    </header>
+    <ol class="foundations reveal">
+      <li>Respect for human life from conception to natural death</li>
+      <li>Marriage and the family as the fundamental unit of society</li>
+      <li>Religious freedom and freedom of conscience</li>
+      <li>The rule of law</li>
+      <li>Constitutional democracy that respects fundamental rights</li>
+      <li>Government directed toward justice and the common good</li>
+    </ol>
+    <p class="sec-lede center reveal">Although these principles have profoundly shaped Western Civilization, their significance is universal. The dignity of the human person belongs equally to every people and nation. The Summit will therefore provide an international setting in which legislators, government officials, diplomats, ecclesiastical leaders, scholars, journalists, and civil society leaders can examine shared challenges, learn from experience, and develop practical cooperation.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap narrow-wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">Objectives</p>
+      <h2>The Inaugural Summit Will Seek To</h2>
+    </header>
+    <ol class="objectives">
+      <li class="reveal"><strong>Clarify</strong><span>the relationship between natural law, human dignity, fundamental rights, and legitimate political authority.</span></li>
+      <li class="reveal"><strong>Equip</strong><span>participants to apply these principles in legislation, diplomacy, public policy, and civic leadership.</span></li>
+      <li class="reveal"><strong>Strengthen</strong><span>cooperation in defending human life, marriage and the family, religious freedom, and freedom of conscience.</span></li>
+      <li class="reveal"><strong>Expose</strong><span>grave violations of human dignity, including human trafficking, illegal mass migration and its aftermath, the persecution of Christians, with particular attention to Nigeria and Nicaragua.</span></li>
+      <li class="reveal"><strong>Establish</strong><span>continuing relationships among leaders committed to ordered liberty, justice, and peace.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section schedule">
+  <div class="wrap narrow-wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow">{{ s.data.dateText }}</p>
+      <h2>The Afternoon at a Glance</h2>
+    </header>
+    <ol class="glance reveal">
+      {% for item in s.data.program %}
+      <li><span class="glance-time">{{ item.time }}</span><span class="glance-body"><span class="glance-label">{{ item.label }}</span>{% if item.title != item.label %}<span class="glance-title">{{ item.title }}</span>{% endif %}{% if item.speaker %}<span class="glance-speaker">{{ item.speaker }}</span>{% endif %}</span></li>
+      {% endfor %}
+    </ol>
+    <div class="reveal">{% include "day2.njk" %}</div>
+    <p class="center"><a class="btn btn-navy" href="{{ '/program/' | url }}">Full Program</a></p>
+  </div>
+</section>
+
+<section class="cta-band" style="--img:url('{{ '/assets/img/art/capitol.jpg' | url }}')">
+  <div class="wrap reveal">
+    <p class="eyebrow light">{{ s.data.dateText }}</p>
+    <h2>Join Us in Washington</h2>
+    <p>{{ s.data.location }} · {{ s.data.venue }}</p>
+    <a class="btn btn-gold btn-lg" href="{{ '/register/' | url }}">Register to Attend</a>
+  </div>
+</section>
