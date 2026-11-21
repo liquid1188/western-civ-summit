@@ -26,7 +26,7 @@ description: Request a place at the International Summit for Western Civilizatio
         <dt>Location</dt><dd>{{ s.data.location }}<br>{{ s.data.venue }}</dd>
       </dl>
       {% if s.data.speakers.length %}
-      <p class="aside-head">Keynote Speakers</p>
+      <p class="aside-head">Speakers</p>
       <ul class="aside-list">{% for sp in s.data.speakers %}<li>{{ sp.name }}</li>{% endfor %}</ul>
       {% endif %}
       {% include "calendar.njk" %}

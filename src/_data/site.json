@@ -7,5 +7,6 @@
   "registrationOpen": true,
   "setupMode": true,
   "origin": "https://liquid1188.github.io",
-  "cloudflareAnalyticsToken": ""
+  "cloudflareAnalyticsToken": "",
+  "icjfUrl": "https://liquid1188.github.io/icjf-website"
 }

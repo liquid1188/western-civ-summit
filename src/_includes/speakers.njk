@@ -6,6 +6,7 @@
     <p class="speaker-role">{{ sp.role }}</p>
     <h3>{{ sp.name }}</h3>
     {% if sp.bio %}<p>{{ sp.bio }}</p>{% endif %}
+    {% if sp.link %}<p class="speaker-link"><a href="{{ sp.link }}" target="_blank" rel="noopener">Full biography</a></p>{% endif %}
   </article>
   {% endfor %}
 </div>

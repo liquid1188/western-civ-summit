@@ -46,7 +46,7 @@ collections:
           - { name: url, label: Website, widget: string, required: false }
           - { name: logo, label: Logo, widget: image, required: false }
       - name: speakers
-        label: Keynote speakers
+        label: Speakers
         widget: list
         required: false
         summary: "{{name}}"
@@ -54,6 +54,7 @@ collections:
           - { name: name, label: Name, widget: string }
           - { name: role, label: Role, widget: string, default: Keynote Speaker }
           - { name: bio, label: One-line bio, widget: string, required: false }
+          - { name: link, label: Link to full biography, widget: string, required: false }
           - { name: photo, label: Photo, widget: image, required: false }
       - name: program
         label: Program

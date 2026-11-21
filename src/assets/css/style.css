@@ -489,3 +489,58 @@ blockquote.conviction-text { margin: 0 0 1.4rem; padding: 0; border: 0; font-sty
 .why::before { opacity: .75; }
 .why::after { background: linear-gradient(180deg, rgba(10,16,29,.94) 0%, rgba(10,16,29,.6) 42%, rgba(10,16,29,.72) 70%, rgba(10,16,29,.95) 100%); }
 .why .sec-lede { text-shadow: 0 1px 12px rgba(10,16,29,.9); }
+
+/* Round 3: Jane's notes */
+.speaker p.speaker-link { margin: .9rem 0 0; }
+.speaker-link a, .plate-links a { font: 500 .66rem var(--caps); letter-spacing: .2em; text-transform: uppercase; color: var(--porphyry); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+.speaker-link a:hover, .plate-links a:hover { color: var(--navy); }
+.plate .plate-links { margin: 1rem 0 0; display: flex; gap: 10px 22px; flex-wrap: wrap; }
+.speaker p:last-child { color: inherit; }
+.speaker > p:not(.speaker-role):not(.speaker-link) { color: var(--muted); font-size: .98rem; margin: 0; }
+
+/* Mobile pass */
+@media (max-width: 640px) {
+  .hero { display: block; min-height: 0; }
+  .hero-art { inset: 0 0 auto 0; height: 56vh; height: 56svh; background-position: 50% 60%; animation: none; }
+  .hero-shade { inset: 0 0 auto 0; height: 56vh; height: 56svh; background: linear-gradient(180deg, rgba(10,16,29,.78) 0%, rgba(10,16,29,.12) 22%, rgba(10,16,29,0) 55%, rgba(10,16,29,.7) 86%, var(--ink) 100%); }
+  .hero-inner { padding-top: calc(56vh - 34px); padding-top: calc(56svh - 34px); padding-bottom: 38px; }
+  .kicker { margin-bottom: 1.1rem; }
+  .hero h1 { font-size: clamp(2.7rem, 12.5vw, 3.4rem); }
+  .hero-sub { font-size: 1.3rem; margin-bottom: 1.3rem; }
+  .hero-date { flex-direction: row; gap: 10px; font-size: .72rem; letter-spacing: .16em; margin-bottom: 1.6rem; }
+  .hero-cta { gap: 10px; }
+  .hero-cta .btn { max-width: none; padding: 17px 20px; }
+  .hero-bar-inner { gap: 16px; padding-top: 22px; padding-bottom: 22px; }
+  .hero-facts { font-size: .88rem; line-height: 1.6; }
+  .collab { padding: 22px 0; }
+  .collab ul { gap: 14px; }
+  .collab li, .collab li a { flex-direction: column; gap: 8px; text-align: center; }
+  .section { padding: 64px 0; }
+  .sec-head { margin-bottom: 2.2rem; }
+  .speaker-grid { gap: 18px; }
+  .speaker { display: grid; grid-template-columns: 104px 1fr; column-gap: 18px; align-items: center; text-align: left; padding: 22px 20px; }
+  .speaker::before { inset: 6px; }
+  .speaker img, .speaker-mono { grid-row: 1 / span 4; width: 104px; height: 132px; margin: 0; }
+  .speaker-mono { font-size: 2.6rem; }
+  .speaker-role { align-self: end; margin-bottom: .3rem; font-size: .6rem; letter-spacing: .2em; }
+  .speaker h3 { font-size: 1.3rem; margin-bottom: .3em; }
+  .speaker > p:not(.speaker-role):not(.speaker-link) { font-size: .86rem; line-height: 1.45; }
+  .speaker p.speaker-link { margin-top: .6rem; align-self: start; }
+  .lede { font-size: 1.3rem; }
+  .occasion .lede { margin-bottom: 2.4rem; }
+  .triad { margin-bottom: 3rem; }
+  .triad-cols li { padding: 26px 12px; }
+  .occ-text { margin-bottom: 3rem; }
+  .occasion .plates-intro { font-size: 1.3rem; }
+  .foundations { grid-template-columns: 1fr 1fr; }
+  .foundations li { padding: 22px 12px !important; font-size: 1.08rem; border-right: 1px solid rgba(200,164,90,.28) !important; }
+  .foundations li:nth-child(2n) { border-right: 0 !important; }
+  .foundations li:nth-last-child(-n+2) { border-bottom: 0 !important; }
+  .foundations li::before { margin-bottom: 8px; font-size: .78rem; }
+  .sec-lede { font-size: 1.2rem; }
+  .objectives li { padding: 22px 0; }
+  .objectives strong { font-size: 1.8rem; }
+  .cta-band { padding: 84px 0; }
+  .conviction { padding: 60px 0; }
+  .conviction-text { font-size: 1.6rem; }
+}

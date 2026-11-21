@@ -17,7 +17,7 @@ description: The program for the International Summit for Western Civilization.
 {% include "livestream.njk" %}
 <section class="section">
   <div class="wrap narrow-wrap">
-    {% if s.data.speakers.length %}<header class="sec-head"><p class="eyebrow">Keynote Speakers</p><h2>Addressing the Summit</h2></header>{% include "speakers.njk" %}<header class="sec-head mt"><p class="eyebrow">{{ s.data.dateText }}</p><h2>Schedule</h2></header>{% endif %}
+    {% if s.data.speakers.length %}<header class="sec-head"><p class="eyebrow">Speakers</p><h2>Addressing the Summit</h2></header>{% include "speakers.njk" %}<header class="sec-head mt"><p class="eyebrow">{{ s.data.dateText }}</p><h2>Schedule</h2></header>{% endif %}
     {% include "program-list.njk" %}
     {% include "day2.njk" %}
     <p class="note">Program and speakers are subject to change.</p>
