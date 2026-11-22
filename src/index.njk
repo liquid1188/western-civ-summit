@@ -27,7 +27,6 @@ bodyClass: home
       </div>
       <div class="hero-facts">
         <p>{{ s.data.timeText }}</p>
-        <p>{{ s.data.context }}</p>
         {% include "calendar.njk" %}
       </div>
     </div>
@@ -42,7 +41,7 @@ bodyClass: home
     <p class="collab-label">In collaboration with</p>
     <ul>
       {% for c in s.data.cosponsors %}
-      <li>{% if c.url %}<a href="{{ c.url }}" rel="noopener">{% endif %}{% if c.logo %}<img src="{{ c.logo | url }}" alt="" width="72" height="72">{% endif %}<span>{{ c.name }}</span>{% if c.url %}</a>{% endif %}</li>
+      <li>{% if c.url %}<a href="{{ c.url }}" rel="noopener">{% endif %}{% if c.logo %}<img src="{{ c.logo | url }}" alt="" width="72" height="72">{% else %}<span class="collab-mono" aria-hidden="true">{{ c.monogram or c.name[0] }}</span>{% endif %}<span class="collab-name">{{ c.name }}</span>{% if c.url %}</a>{% endif %}</li>
       {% endfor %}
     </ul>
   </div>

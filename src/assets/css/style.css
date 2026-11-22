@@ -685,3 +685,34 @@ p { text-wrap: pretty; }
   .editorial-body p:first-child { font-size: 1.3rem; }
 }
 @media (prefers-reduced-motion: reduce) { .js .found-list li { opacity: 1; transform: none; } }
+
+/* Collaborating organizations: two clearly separate entries, each with its own mark */
+.collab { padding: 30px 0; }
+.collab-inner { gap: 20px 56px; }
+.collab ul { gap: 0; flex-wrap: nowrap; }
+.collab li { padding: 4px 0; }
+.collab li + li { margin-left: 44px; padding-left: 44px; border-left: 1px solid rgba(154, 122, 50, .55); }
+.collab li span.collab-name { max-width: 17ch; line-height: 1.45; text-wrap: balance; }
+.collab li span.collab-mono { flex: none; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--gold-d); box-shadow: inset 0 0 0 4px var(--marble-2), inset 0 0 0 5px rgba(154, 122, 50, .45); font: italic 500 1.55rem/1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--navy); }
+@media (max-width: 760px) {
+  .collab-inner { flex-direction: column; gap: 18px; }
+  .collab ul { flex-direction: column; align-items: stretch; width: min(100%, 330px); margin-inline: auto; }
+  .collab li, .collab li a { flex-direction: row; align-items: center; gap: 16px; text-align: left; }
+  .collab li { padding: 0; }
+  .collab li + li { margin: 16px 0 0; padding: 16px 0 0; border-left: 0; border-top: 1px solid rgba(154, 122, 50, .45); }
+  .collab img, .collab li span.collab-mono { width: 54px; height: 54px; }
+  .collab li span.collab-mono { font-size: 1.2rem; }
+  .collab li span.collab-name { font-size: .66rem; letter-spacing: .11em; max-width: none; }
+}
+
+/* Athens, Rome, Jerusalem on phones and tablets: three separate cards, each with its own footer */
+@media (max-width: 980px) {
+  .triad-cols { border-top: 0; gap: 18px; max-width: 560px; margin-inline: auto; }
+  .triad-cols li, .triad-cols li:first-child { padding: 0; border: 1px solid var(--line); border-top: 2px solid var(--gold); background: var(--marble); box-shadow: 0 20px 44px -32px rgba(17, 27, 48, .5); overflow: hidden; }
+  .triad-city { margin: 0; padding: 28px 16px 0; }
+  .triad-lead { margin: 0; padding: 14px 16px 0; white-space: normal; }
+  .triad-cols h3 { margin: 0; padding: 2px 16px 28px; white-space: normal; }
+  .triad-grounds { max-width: none; margin: 0; padding: 18px 22px 22px; border-top: 1px solid var(--line); background: var(--marble-2); }
+  .triad-join::after { height: 40px; }
+  .triad-law { padding-top: 58px; }
+}

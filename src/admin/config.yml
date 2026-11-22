@@ -45,6 +45,7 @@ collections:
           - { name: name, label: Name, widget: string }
           - { name: url, label: Website, widget: string, required: false }
           - { name: logo, label: Logo, widget: image, required: false }
+          - { name: monogram, label: "Initials (shown in a ring when there is no logo)", widget: string, required: false }
       - name: speakers
         label: Speakers
         widget: list
