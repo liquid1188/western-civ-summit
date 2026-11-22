@@ -44,3 +44,9 @@ It does not get a showcase section of portraits or paintings.
 
 ## Each year
 Add a new file in `src/summits/` and change `currentYear` in `src/_data/site.json`. Past years move to Speeches & Media on their own.
+
+## Image sources
+
+Not shown on the site (all public domain, no credit required). Kept here for the record.
+
+Raphael, *The School of Athens*, Vatican. John Trumbull, *Declaration of Independence*, U.S. Capitol. Giovanni Paolo Panini, *Interior of St. Peter’s, Rome*, Detroit Institute of Arts. Thomas Cole, *The Consummation of Empire*, New-York Historical Society. U.S. Capitol west front, Architect of the Capitol. All public domain, via Wikimedia Commons.

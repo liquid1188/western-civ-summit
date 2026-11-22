@@ -716,3 +716,30 @@ p { text-wrap: pretty; }
   .triad-join::after { height: 40px; }
   .triad-law { padding-top: 58px; }
 }
+
+/* Hero on tablet and desktop: the words sit in the vault, above every head in the painting */
+@media (min-width: 761px) {
+  .hero { min-height: min(100vh, 66vw); min-height: min(100svh, 66vw); justify-content: flex-start; }
+  .hero-art { inset: auto 0 -4.6vw 0; height: 64.36vw; background-size: 100% 100%; background-position: 50% 100%; transform-origin: 50% 100%; animation-name: herodrift; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%); mask-image: linear-gradient(180deg, transparent 0, #000 22%); }
+  .hero-shade { background:
+    linear-gradient(90deg, rgba(10,16,29,.6) 0%, rgba(10,16,29,0) 22%, rgba(10,16,29,0) 78%, rgba(10,16,29,.6) 100%),
+    linear-gradient(0deg, rgba(10,16,29,.9) 0, rgba(10,16,29,.34) 11vw, rgba(10,16,29,.1) 19vw, rgba(10,16,29,.14) 26vw, rgba(10,16,29,.4) 33vw, rgba(10,16,29,.56) 42vw, rgba(10,16,29,.62) 100%); }
+  .hero-inner { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 0; margin-bottom: calc(27.7vw - 62px); padding-top: calc(var(--head-h) + 30px); padding-bottom: 26px; }
+  .hero h1 { font-size: clamp(3rem, min(7.4vw, 12.5vh), 6.6rem); }
+  .hero-sub { margin-bottom: 1.2rem; }
+  .hero-date { margin-bottom: 1.5rem; }
+  .kicker { margin-bottom: 1.2rem; }
+}
+@keyframes herodrift { from { transform: scale(1); } to { transform: scale(1.045); } }
+
+/* Why This Summit: larger numerals */
+.found-list li { grid-template-columns: 74px minmax(0, 1fr); }
+.found-list li::before { font-size: 1.3rem; font-weight: 500; letter-spacing: .1em; color: var(--gold-l); }
+@media (max-width: 860px) { .found-list li { grid-template-columns: 58px minmax(0, 1fr); } .found-list li::before { font-size: 1.12rem; } }
+
+/* Footer links on phones: one per line, with room to tap */
+@media (max-width: 620px) {
+  .footer-nav { flex-direction: column; align-items: center; gap: 0; margin: 1.6rem 0 2.4rem; }
+  .footer-nav a { display: block; padding: 13px 18px; font-size: .74rem; }
+}
+.footer-base { padding-bottom: 26px; }
