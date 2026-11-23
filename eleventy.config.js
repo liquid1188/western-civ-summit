@@ -2,6 +2,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/media");
+  eleventyConfig.addGlobalData("buildId", () => Date.now().toString(36));
   eleventyConfig.addCollection("summits", (api) =>
     api.getFilteredByGlob("src/summits/*.md").sort((a, b) => b.data.year - a.data.year)
   );
