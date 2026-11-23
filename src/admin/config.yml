@@ -104,6 +104,19 @@ collections:
   - name: settings
     label: Site Settings
     files:
+      - name: committee
+        label: Organizing Committee
+        file: src/_data/committee.json
+        fields:
+          - name: members
+            label: Members
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: "Role (e.g. Chairwoman; leave empty for members)", widget: string, required: false }
+              - { name: bio, label: Biography, widget: text }
+              - { name: link, label: Link to full biography, widget: string, required: false }
       - name: site
         label: Site
         file: src/_data/site.json

@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: Organizing Committee
+description: The Organizing Committee of the International Summit for Western Civilization.
+permalink: /committee/
+---
+{% set s = collections.summits | current(site.currentYear) %}
+<section class="page-head" style="--img:url('{{ '/assets/img/art/capitol.jpg' | url }}')">
+  <div class="wrap">
+    <p class="eyebrow light">{{ s.data.edition }} Summit · {{ s.data.dateText }}</p>
+    <h1>Organizing Committee</h1>
+    <p class="page-sub">The people preparing the Summit</p>
+  </div>
+</section>
+<section class="section committee-section">
+  <div class="wrap">
+    <ol class="committee">
+      {% for m in committee.members %}
+      <li class="member{% if m.role %} member-chair{% endif %} reveal">
+        <div class="member-id">
+          {% if m.role %}<p class="member-role">{{ m.role }}</p>{% endif %}
+          <h2>{{ m.name }}</h2>
+        </div>
+        <div class="member-body">
+          <p>{{ m.bio }}</p>
+          {% if m.link %}<p class="speaker-link"><a href="{{ m.link }}" target="_blank" rel="noopener">Full biography<span class="sr">, {{ m.name }}</span></a></p>{% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="center mt"><a class="btn btn-gold" href="{{ '/program/' | url }}">View the Program</a></p>
+  </div>
+</section>

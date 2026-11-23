@@ -31,7 +31,7 @@
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav"><span></span><span></span><span class="sr">Menu</span></button>
       <nav id="nav" class="nav">
-        {% set links = [["/", "Home"], ["/program/", "Program"], ["/archive/", "Speeches & Media"], ["/contact/", "Contact"]] %}
+        {% set links = [["/", "Home"], ["/program/", "Program"], ["/committee/", "Committee"], ["/archive/", "Speeches & Media"], ["/contact/", "Contact"]] %}
         {% for l in links %}<a href="{{ l[0] | url }}"{% if page.url == l[0] %} aria-current="page"{% endif %}>{{ l[1] }}</a>{% endfor %}
         <a class="btn btn-gold" href="{{ '/register/' | url }}">Attend</a>
       </nav>
@@ -60,6 +60,7 @@
       <nav class="footer-nav">
         <a href="{{ '/program/' | url }}">{{ site.currentYear }} Program</a>
         <a href="{{ '/register/' | url }}">Request to Attend</a>
+        <a href="{{ '/committee/' | url }}">Organizing Committee</a>
         <a href="{{ '/archive/' | url }}">Speeches &amp; Media</a>
         <a href="{{ '/contact/' | url }}">Contact</a>
         <a href="{{ '/privacy/' | url }}">Privacy</a>
