@@ -115,8 +115,10 @@ collections:
             fields:
               - { name: name, label: Name, widget: string }
               - { name: role, label: "Role (e.g. Chairwoman; leave empty for members)", widget: string, required: false }
-              - { name: bio, label: Biography, widget: text }
-              - { name: link, label: Link to full biography, widget: string, required: false }
+              - { name: bio, label: Short biography (two or three sentences), widget: text }
+              - { name: full, label: "Full biography (optional; opens on the page under Full biography)", widget: text, required: false }
+              - { name: link, label: "Link to full biography (used when no full biography is entered)", widget: string, required: false }
+              - { name: photo, label: Photo, widget: image, required: false }
       - name: site
         label: Site
         file: src/_data/site.json

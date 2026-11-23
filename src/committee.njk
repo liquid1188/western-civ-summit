@@ -17,13 +17,16 @@ permalink: /committee/
     <ol class="committee">
       {% for m in committee.members %}
       <li class="member{% if m.role %} member-chair{% endif %} reveal">
+        {% set parts = m.name.split(" ") %}
+        <div class="member-photo">{% if m.photo %}<img src="{{ m.photo | url }}" alt="{{ m.name }}" width="120" height="150" loading="lazy">{% else %}<div class="member-mono" aria-hidden="true">{{ parts[0][0] }}{{ parts[parts.length - 1][0] }}</div>{% endif %}</div>
         <div class="member-id">
           {% if m.role %}<p class="member-role">{{ m.role }}</p>{% endif %}
           <h2>{{ m.name }}</h2>
         </div>
         <div class="member-body">
-          <p>{{ m.bio }}</p>
-          {% if m.link %}<p class="speaker-link"><a href="{{ m.link }}" target="_blank" rel="noopener">Full biography<span class="sr">, {{ m.name }}</span></a></p>{% endif %}
+          <p class="member-short">{{ m.bio }}</p>
+          {% if m.full %}<details class="member-more"><summary><span class="more-open">Full biography</span><span class="more-close">Show less</span><span class="sr">, {{ m.name }}</span></summary><p>{{ m.full }}</p></details>
+          {% elif m.link %}<p class="speaker-link"><a href="{{ m.link }}" target="_blank" rel="noopener">Full biography<span class="sr">, {{ m.name }}</span></a></p>{% endif %}
         </div>
       </li>
       {% endfor %}
