@@ -33,7 +33,10 @@
       if (isNaN(target) || d <= 0) { cd.hidden = true; return false; }
       cd.hidden = false;
       var v = { d: Math.floor(d / 864e5), h: Math.floor(d / 36e5) % 24, m: Math.floor(d / 6e4) % 60, s: Math.floor(d / 1e3) % 60 };
-      cd.querySelectorAll("[data-u]").forEach(function (b) { b.textContent = v[b.dataset.u]; });
+      cd.querySelectorAll("[data-u]").forEach(function (b) {
+        var u = b.dataset.u, t = u === "d" ? String(v[u]) : String(v[u]).padStart(2, "0");
+        if (b.textContent !== t) b.textContent = t;
+      });
       return true;
     };
     if (tick()) setInterval(tick, 1000);
@@ -124,15 +127,6 @@
   }
   window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   window.addEventListener("resize", update); update();
-
-  // Countdown digits tick
-  var cd = document.getElementById("countdown");
-  if (cd && "MutationObserver" in window) {
-    cd.querySelectorAll("b").forEach(function (b) {
-      new MutationObserver(function () { b.classList.remove("tick"); void b.offsetWidth; b.classList.add("tick"); })
-        .observe(b, { childList: true, characterData: true, subtree: true });
-    });
-  }
 })();
 
 (function () {
