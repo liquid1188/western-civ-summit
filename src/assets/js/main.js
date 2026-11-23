@@ -130,30 +130,33 @@
 })();
 
 (function () {
-  // Voices: quotations take turns. Tabs choose one. Pauses under the pointer and off screen.
+  // Voices: quotations take turns, each for the same time. Tabs choose one.
+  // The gold bar under the active tab fills as its time runs; it pauses under the pointer and off screen.
   var root = document.getElementById("voices"); if (!root) return;
   var vs = root.querySelectorAll(".voice"), tabs = root.querySelectorAll(".voices-tabs button");
-  var i = 0, timer = null, DUR = 8000, visible = false, hover = false;
+  var i = 0, DUR = 8000, elapsed = 0, last = 0, visible = false, hover = false, chosen = false;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   vs.forEach(function (v, k) { if (v.classList.contains("on")) i = k; });
+  function paint() { tabs.forEach(function (b, k) { b.style.setProperty("--p", k === i ? (chosen || reduce ? 1 : elapsed / DUR) : 0); }); }
   function show(n) {
-    i = (n + vs.length) % vs.length;
+    i = (n + vs.length) % vs.length; elapsed = 0;
     vs.forEach(function (v, k) { v.classList.toggle("on", k === i); });
     tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    paint();
   }
-  function stop() { clearInterval(timer); timer = null; root.classList.remove("playing"); }
-  function play() {
-    stop(); if (reduce || !visible || hover) return;
-    show(i + 1); root.classList.add("playing");
-    timer = setInterval(function () { show(i + 1); }, DUR);
+  function frame(t) {
+    var running = visible && !hover && !chosen && !reduce && !document.hidden;
+    if (running && last) {
+      elapsed += Math.min(t - last, 100);
+      if (elapsed >= DUR) show(i + 1); else paint();
+    }
+    last = t; requestAnimationFrame(frame);
   }
-  tabs.forEach(function (b, k) { b.addEventListener("click", function () { stop(); show(k); }); });
-  root.addEventListener("mouseenter", function () { hover = true; stop(); });
-  root.addEventListener("mouseleave", function () { hover = false; setTimeout(function () { if (!hover) play(); }, 2500); });
+  tabs.forEach(function (b, k) { b.addEventListener("click", function () { chosen = true; show(k); }); });
+  root.addEventListener("mouseenter", function () { hover = true; });
+  root.addEventListener("mouseleave", function () { hover = false; });
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) {
-      visible = es[0].isIntersecting;
-      if (visible) { if (!timer) setTimeout(function () { if (visible && !timer) play(); }, 5000); } else stop();
-    }, { threshold: 0.5 }).observe(root);
-  }
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(root);
+  } else visible = true;
+  paint(); requestAnimationFrame(frame);
 })();
