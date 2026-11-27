@@ -73,7 +73,7 @@ p { margin: 0 0 1.1em; }
 .brand-text span { font: 500 .86rem var(--caps); letter-spacing: .2em; text-transform: uppercase; }
 .brand-text em { font: italic 500 1.02rem var(--serif); color: var(--gold-l); }
 .nav { display: flex; align-items: center; gap: 30px; }
-.nav a:not(.btn) { color: rgba(255,255,255,.85); text-decoration: none; font: 500 .72rem var(--caps); letter-spacing: .18em; text-transform: uppercase; padding: 6px 0; border-bottom: 1px solid transparent; transition: .2s; }
+.nav a:not(.btn) { color: rgba(255,255,255,.85); text-decoration: none; font: 500 .72rem var(--caps); letter-spacing: .18em; text-transform: uppercase; padding: 6px 0; white-space: nowrap; border-bottom: 1px solid transparent; transition: .2s; }
 .nav a:not(.btn):hover, .nav a[aria-current="page"]:not(.btn) { color: #fff; border-bottom-color: var(--gold); }
 .nav .btn { padding: 12px 20px; }
 .nav-toggle { display: none; background: none; border: 0; width: 44px; height: 44px; padding: 12px 8px; cursor: pointer; }
@@ -773,3 +773,7 @@ p { text-wrap: pretty; }
   .member-photo { margin-bottom: 4px; }
   .member-chair .member-short { font-size: 1.2rem; }
 }
+.prose-page.movement ul { margin: 0 0 1.4rem; padding-left: 1.3rem; }
+.prose-page.movement li { font-size: 1.08rem; line-height: 1.7; margin-bottom: .55rem; }
+.prose-page.movement a { text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 981px) and (max-width: 1180px) { .nav { gap: 20px; } .nav a:not(.btn) { letter-spacing: .14em; } }
